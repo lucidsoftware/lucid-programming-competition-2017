@@ -1,5 +1,15 @@
 # Lucid Programming Competition 2017
 
+## Run
+
+```sh
+sudo apt-get install colordiff
+```
+
+```sh
+make test-myproblem
+```
+
 ## Generate descriptions
 
 ```sh
