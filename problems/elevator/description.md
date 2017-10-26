@@ -40,6 +40,7 @@ The soonest time that everyone will be at their desk, given as hh:mm:ss XM.
     <tr>
         <th>Input</th>
         <th>Input</th>
+        <th>Input</th>
     </tr>
     <tr>
         <td><pre>10 4
@@ -59,14 +60,16 @@ The soonest time that everyone will be at their desk, given as hh:mm:ss XM.
 0
 9
 </pre></td>
-        <td><pre>1000000</pre></td>
+        <td><pre>1 0</pre></td>
     </tr>
     <tr>
+        <th>Output</th>
         <th>Output</th>
         <th>Output</th>
     </tr>
     <tr>
         <td><pre>09:01:20 AM</pre></td>
         <td><pre>09:05:00 AM</pre></td>
+        <td><pre>09:00:00 AM</pre></td>
     </tr>
 </table>
