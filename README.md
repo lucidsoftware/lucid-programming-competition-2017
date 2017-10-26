@@ -3,7 +3,9 @@
 ## Run
 
 ```sh
-sudo apt-get install colordiff
+wget -O /tmp/scala.deb https://downloads.lightbend.com/scala/2.12.2/scala-2.12.2.deb
+sudo dpkg -i /tmp/scala.deb
+sudo apt-get install -f colordiff
 ```
 
 ```sh
