@@ -16,7 +16,7 @@ include $(wildcard problems/*/Makefile)
 
 test-%:
 	@for f in $(sort $(wildcard problems/$*/solutions/*.run samples/$*/solutions/*.run)); do \
-		for g in $(sort $(wildcard problems/$*/tests/*.run samples/$*/tests/*.in)); do \
+		for g in $(sort $(wildcard problems/$*/tests/*.in samples/$*/tests/*.in)); do \
 			if colordiff -b "$${g/.in/.out}" <("$$f" < "$$g"); then \
 				echo "Solution $$(basename $$f .run), Test $$(basename $$g .in): SUCCESS"; \
 			else \
