@@ -5,7 +5,7 @@
 ```sh
 wget -O /tmp/scala.deb https://downloads.lightbend.com/scala/2.12.2/scala-2.12.2.deb
 sudo dpkg -i /tmp/scala.deb
-sudo apt-get install -f colordiff
+sudo apt-get install -f colordiff openjdk-8-jdk-headless
 ```
 
 ```sh
