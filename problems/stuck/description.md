@@ -31,8 +31,8 @@ possible outcome is weighted by its probabilty, the average number of function c
 ## Input
 
 The positions of the shapes is given as a grid. The first line is two space-separated integers 0 <= R, C <= 100, which
-are the numbers of rows and columns. The following R rows each have C characters. `A` represents the starting shape,
-`B` represents the ending shape, `O` represents another shape, and `-` represents empty space.
+are the numbers of rows and columns. The following R rows each have C characters. `^` represents the starting shape,
+`$` represents the ending shape, `O` represents another shape, and `.` represents empty space.
 
 ## Output
 
@@ -48,16 +48,16 @@ The minimum average function calls, accurate to within 0.001.
     </tr>
     <tr>
         <td><pre>3 4
-O-O-
-OA-O
-O-OB</pre></td>
+O.O.
+O^.O
+O.O$</pre></td>
         <td><pre>3 4
-A-O-
-OO-O
-O-OB</pre></td>
+^.O.
+OO.O
+O.O$</pre></td>
         <td><pre>2 2
-B-
--A</pre></td>
+$.
+.^</pre></td>
     </tr>
     <tr>
         <th>Output</th>
