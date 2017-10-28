@@ -21,18 +21,18 @@ For example, consider the following flowchart of 8 shapes, where the exit link i
     <img alt="Example flowchart" src="./example-flowchart.svg">
 </div>
 
-If you started at D, you would call `right(); down();` so the fewest average calls are 2.
+If you started at D, you would call `right() down()`, so the fewest average calls are 2.
 
-If you started at A, you *could* call `right(); down(); right();`. But it's actually optimal on average to call
-`random();` Subsequent calls depend on the result. There's a 1/8 chance you reach H, and immediately exit. There's a
-1/8 chance you would remain on A, and call `random();` again. The average number of function calls of the optimal
-strategy is 2.333.
+If you started at A, you *could* call `right() down() right()` But it's actually optimal on average to instead call
+`random()` There's 1/8 chance you reach H, and immediately exit (1 total call). There's 1/8 change you reach E, and
+call `down()` (2 calls). There's even 1/8 chance you would remain on A, and call `random()` again (2+ calls). When each
+possible outcome is weighted by its probabilty, the average number of function calls of this optimal strategy is 2.333.
 
 ## Input
 
-The positions of the shapes is given as a grid. The first line is two space-separated integers 0 <= R, C <= 100, which are the numbers of rows and columns. The
-following R rows each have C characters. An `A` represents the starting shape, a `B` represents the ending shape, an
-`O` represents another shape, and a `-` represents empty space.
+The positions of the shapes is given as a grid. The first line is two space-separated integers 0 <= R, C <= 100, which
+are the numbers of rows and columns. The following R rows each have C characters. `A` represents the starting shape,
+`B` represents the ending shape, `O` represents another shape, and `-` represents empty space.
 
 ## Output
 
