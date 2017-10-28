@@ -29,7 +29,7 @@ test-%:
 	ruby -rerb -rnet/http -e 'puts ERB.new(File.read "convert.html.erb").result' < $< > $@
 
 problem-descriptions.pdf: $(PROBLEM_DESCRIPTIONS_HTML) $(shell find problems -name '*.png' -o -name '*.svg')
-	wkhtmltopdf -g --print-media-type $^ $@
+	wkhtmltopdf -g --print-media-type $(PROBLEM_DESCRIPTIONS_HTML) $@
 
 sample-descriptions.pdf: $(SAMPLE_DESCRIPTIONS_HTML) $(shell find samples -name '*.png')
-	wkhtmltopdf -g --print-media-type $^ $@
+	wkhtmltopdf -g --print-media-type $(PROBLEM_DESCRIPTIONS_HTML) $@
