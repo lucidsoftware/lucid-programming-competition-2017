@@ -28,7 +28,7 @@ Of course, Filbert can't calculate each of these areas by hand; most overlapping
 <img alt="Shoelace formula" src="./shoelace.png">
 </div>
 
-# Input
+## Input
 
 The input will describe two convex polygons. The first line will contain an integer `N < 100`, the number of sides for the first polygon. The next `N` lines will contain a pair of decimal numbers `(x, y`),  representing the coordinates of the first polygon's vertices. This will be followed by a line containing an integer `M < 100`, the number of sides for the second polygon. The last `M` lines will contain the coordinates for the second set of vertices in the same fashion.
 
@@ -36,11 +36,11 @@ The input will describe two convex polygons. The first line will contain an inte
 
 Don't forget to account for cases where the polygons are completely disjoint (the area is zero) or where one polygon is contained entirely within the other (the area is the area of the contained polygon)!
 
-# Output
+## Output
 
 The area of the intersection of the two polygons, rounded to 3 decimal places.
 
-# Examples
+## Examples
 
 <table>
     <tr>

@@ -4,15 +4,15 @@ It's always a good idea to add a litle pizzaz to what you say.
 
 Append " and it will be fantastic" to the given statement.
 
-# Input
+## Input
 
 Input is a statement consisting of printable ASCII characters.
 
-# Output
+## Output
 
 Output the resulting statement.
 
-# Examples
+## Examples
 
 <table>
     <tr>

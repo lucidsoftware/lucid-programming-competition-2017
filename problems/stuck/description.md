@@ -28,17 +28,17 @@ If you started at A, you *could* call `right(); down(); right();`. But it's actu
 1/8 chance you would remain on A, and call `random();` again. The average number of function calls of the optimal
 strategy is 2.333.
 
-# Input
+## Input
 
 The positions of the shapes is given as a grid. The first line is two space-separated integers 0 <= R, C <= 100, which are the numbers of rows and columns. The
 following R rows each have C characters. An `A` represents the starting shape, a `B` represents the ending shape, an
 `O` represents another shape, and a `-` represents empty space.
 
-# Output
+## Output
 
 The minimum average function calls, accurate to within 0.001.
 
-# Examples
+## Examples
 
 <table>
     <tr>

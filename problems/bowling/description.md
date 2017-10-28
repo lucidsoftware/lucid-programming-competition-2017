@@ -19,15 +19,15 @@ In the event that all ten pins are knocked down by a plaer in a single frame, bo
 
 If the player wins bonus points on the 10th frame (either a strike or a spare) the player gets extra throws to calculate the bonus points, but the points are not double counted
 
-# Input
+## Input
 The first line of the input will be a number `N`, `N` lines will follow.
 
 Each line will be a full game represented by the number of pins knocked down on each throw, each number separated by a space. Every game will be well formed, there will be exactly the correct number of throws for each game.
 
-# Output
+## Output
 For each game print out the final score each on its own line.
 
-# Examples
+## Examples
 
 <table>
     <tr>

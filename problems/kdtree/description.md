@@ -29,7 +29,7 @@ function kdtree (list of points pointList, int depth)
 }
 ```
 
-# Input
+## Input
 
 The first line is a single integer N, the number of points on the page.
 Each of the next N lines consists of two integers `x y` separated by a space.
@@ -44,14 +44,14 @@ Each of the next T lines contain a single point in the same format as before.
 -10000 <= y <= 10000
 ```
 
-# Output
+## Output
 
 For each of the `T` test cases, output a single line in the same format as it was given containing the point on the page that is closest to the test point.
 If two points on the page are the same distance away, choose the one that comes first when sorted (ascending order by x, then y).
 
 <br>
 
-# Example
+## Example
 
 <table>
     <tr>

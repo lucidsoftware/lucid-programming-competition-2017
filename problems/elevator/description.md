@@ -25,16 +25,16 @@ Each person needs to get from the ground floor to the floor where they work. (Pe
 
 Given that the elevator is limited on the number of people it can carry, when is the soonest that everyone can be on their desired floor?
 
-# Input
+## Input
 
 The first line is the capacity of the elevator 0 < C <= 100 and the number of people 0 <= N <= 5000, separated by a space.
 Each of the next N lines is the floor -100 <= F <= 100 that person needs to reach. The ground floor is zero.
 
-# Output
+## Output
 
 The soonest time that everyone will be at their desk, given as hh:mm:ss XM.
 
-# Examples
+## Examples
 
 <table>
     <tr>
