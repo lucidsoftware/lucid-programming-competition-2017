@@ -17,10 +17,10 @@ include $(wildcard problems/*/Makefile)
 test-%:
 	@for f in $(sort $(wildcard problems/$*/solutions/*.run samples/$*/solutions/*.run)); do \
 		for g in $(sort $(wildcard problems/$*/tests/*.in samples/$*/tests/*.in)); do \
-			if colordiff -b "$${g/.in/.out}" <("$$f" < "$$g"); then \
-				echo "Solution $$(basename $$f .run), Test $$(basename $$g .in): SUCCESS"; \
+			if /usr/bin/time -o/tmp/lucid-programming-time -f%E colordiff -b "$${g/.in/.out}" <("$$f" < "$$g"); then \
+				echo "Solution $$(basename $$f .run), Test $$(basename $$g .in): SUCCESS ($$(< /tmp/lucid-programming-time))"; \
 			else \
-				echo "Solution $$(basename $$f .run), Test $$(basename $$g .in): FAILURE"; \
+				echo "Solution $$(basename $$f .run), Test $$(basename $$g .in): FAILURE ($$(< /tmp/lucid-programming-time))"; \
 			fi \
 		done \
 	done
