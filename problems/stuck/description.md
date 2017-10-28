@@ -15,10 +15,10 @@ random()  // randomly move to any shape (including the current)
 
 What is the fewest average function calls required to reach the exit?
 
-Consider the following example, where the exit link is at shape H:
+For example, consider the following flowchart of 8 shapes, where the exit link is at shape H:
 
 <div align="center">
-<img alt="Example diagram" src="./example-diagram.png">
+    <img alt="Example flowchart" src="./example-flowchart.svg">
 </div>
 
 If you started at D, you would call `right(); down();` so the fewest average calls are 2.
