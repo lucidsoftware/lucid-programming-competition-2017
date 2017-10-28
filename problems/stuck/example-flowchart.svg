@@ -1,14 +1,14 @@
 <svg height="320" viewBox="-10 -10 490 310" width="500" xmlns="http://www.w3.org/2000/svg">
-    <path d="M 0 25 25 50 50 25 25 0 Z" fill="none" stroke="black" stroke-width="2"/>
+    <path d="M 0 25 25 50 50 25 25 00 Z" fill="none" stroke="black" stroke-width="2"/>
     <text x="25" y="25" alignment-baseline="middle" fill="black" font-size="15" text-anchor="middle">A</text>
     <path d="M 200 25 225 50 250 25 225 0 Z" fill="none" stroke="black" stroke-width="2"/>
     <text x="225" y="25" alignment-baseline="middle" fill="black" font-size="15" text-anchor="middle">B</text>
-    <path d="M 0 125 25 150 50 125 25 100 Z" fill="none" stroke="black" stroke-width="2"/>
-    <text x="25" y="125" alignment-baseline="middle" fill="black" font-size="15" text-anchor="middle">C</text>
+    <path d="M 300 25 325 50 350 25 325 0 Z" fill="none" stroke="black" stroke-width="2"/>
+    <text x="325" y="25" alignment-baseline="middle" fill="black" font-size="15" text-anchor="middle">C</text>
+    <path d="M 400 25 425 50 450 25 425 0 Z" fill="none" stroke="black" stroke-width="2"/>
+    <text x="425" y="25" alignment-baseline="middle" fill="black" font-size="15" text-anchor="middle">D</text>
     <path d="M 100 125 125 150 150 125 125 100 Z" fill="none" stroke="black" stroke-width="2"/>
-    <text x="125" y="125" alignment-baseline="middle" fill="black" font-size="15" text-anchor="middle">D</text>
-    <path d="M 300 125 325 150 350 125 325 100 Z" fill="none" stroke="black" stroke-width="2"/>
-    <text x="325" y="125" alignment-baseline="middle" fill="black" font-size="15" text-anchor="middle">E</text>
+    <text x="125" y="125" alignment-baseline="middle" fill="black" font-size="15" text-anchor="middle">E</text>
     <path d="M 0 225 25 250 50 225 25 200 Z" fill="none" stroke="black" stroke-width="2"/>
     <text x="25" y="225" alignment-baseline="middle" fill="black" font-size="15" text-anchor="middle">F</text>
     <path d="M 200 225 225 250 250 225 225 200 Z" fill="none" stroke="black" stroke-width="2"/>
@@ -16,12 +16,11 @@
     <path d="M 300 225 325 250 350 225 325 200 Z" fill="none" stroke="black" stroke-width="2"/>
     <text x="325" y="225" alignment-baseline="middle" fill="black" font-size="15" text-anchor="middle">H</text>
     <line x1="50" y1="25" x2="200" y2="25" stroke="black" stroke-dasharray="5,5" stroke-width="2"/>
-    <line x1="25" y1="50" x2="25" y2="100" stroke="black" stroke-dasharray="5,5" stroke-width="2"/>
+    <line x1="250" y1="25" x2="300" y2="25" stroke="black" stroke-dasharray="5,5" stroke-width="2"/>
+    <line x1="350" y1="25" x2="400" y2="25" stroke="black" stroke-dasharray="5,5" stroke-width="2"/>
+    <line x1="25" y1="50" x2="25" y2="200" stroke="black" stroke-dasharray="5,5" stroke-width="2"/>
     <line x1="225" y1="50" x2="225" y2="200" stroke="black" stroke-dasharray="5,5" stroke-width="2"/>
-    <line x1="50" y1="125" x2="100" y2="125" stroke="black" stroke-dasharray="5,5" stroke-width="2"/>
-    <line x1="150" y1="125" x2="300" y2="125" stroke="black" stroke-dasharray="5,5" stroke-width="2"/>
-    <line x1="25" y1="150" x2="25" y2="200" stroke="black" stroke-dasharray="5,5" stroke-width="2"/>
-    <line x1="325" y1="150" x2="325" y2="200" stroke="black" stroke-dasharray="5,5" stroke-width="2"/>
+    <line x1="325" y1="50" x2="325" y2="200" stroke="black" stroke-dasharray="5,5" stroke-width="2"/>
     <line x1="50" y1="225" x2="200" y2="225" stroke="black" stroke-dasharray="5,5" stroke-width="2"/>
     <line x1="250" y1="225" x2="300" y2="225" stroke="black" stroke-dasharray="5,5" stroke-width="2"/>
     <text x="360" y="225" alignment-baseline="middle" fill="black" font-size="15" text-decoration="underline">javascript:exit()</text>

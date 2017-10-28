@@ -16,39 +16,47 @@ One challenge is calculating \#3, since `random()` can land on a fixed or a rand
 
 ![](http://latex.codecogs.com/gif.latex?E_{random}=1+E_{fixed}+\frac{n_{random}}{n_{fixed}})
 
-For example,  consider the following graph where E is the end
+Let's apply this to the example flowchart in the problem description:
 
-```
-A
-  B-C-D-E
-```
-
-|Shape|Category|Distance|
-|-|-|-|
-|A|random|∞|
-|B|fixed|3|
-|C|fixed|2|
-|D|fixed|1|
-|E|fixed|0|
-
-![](http://latex.codecogs.com/gif.latex?E_{random}=1+\frac{3+2+1+0}{4}+\frac{1}{4}=1+1.5+0.25=2.75)
+<div align="center">
+    <img alt="Example flowchart" src="./example-flowchart.svg">
+</div>
 
 |Shape|Category|Distance|
 |-|-|-|
-|A|random|2.75|
-|B|random|2.75|
-|C|fixed|2|
-|D|fixed|1|
-|E|fixed|0|
+|A|fixed|3|
+|B|fixed|2|
+|C|fixed|1|
+|D|fixed|2|
+|E|random|∞|
+|F|fixed|2|
+|G|fixed|1|
+|H|fixed|0|
 
-![](http://latex.codecogs.com/gif.latex?E_{random}=1+\frac{2+1+0}{3}+\frac{2}{3}=1+1+0.667=2.667)
+![](http://latex.codecogs.com/gif.latex?E_{random}=1+\frac{3+2+1+2+2+1+0}{7}+\frac{1}{7}=1+1.571+0.143=2.714)
+
+|Shape|Category|Distance|
+|-|-|-|
+|A|random|2.714|
+|B|fixed|2|
+|C|fixed|1|
+|D|fixed|2|
+|E|random|2.714|
+|F|fixed|2|
+|G|fixed|1|
+|H|fixed|0|
+
+![](http://latex.codecogs.com/gif.latex?E_{random}=1+\frac{2+1+2+2+1+0}{6}+\frac{2}{6}=1+1.333+0.333=2.667)
 
 |Shape|Category|Distance|
 |-|-|-|
 |A|random|2.667|
-|B|random|2.667|
-|C|fixed|2|
-|D|fixed|1|
-|E|fixed|0|
+|B|fixed|2|
+|C|fixed|1|
+|D|fixed|2|
+|E|random|2.667|
+|F|fixed|2|
+|G|fixed|1|
+|H|fixed|0|
 
 This final table shows minumum average calls starting at each of the shapes.
