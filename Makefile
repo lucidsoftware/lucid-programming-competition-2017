@@ -25,6 +25,16 @@ test-%:
 		done \
 	done
 
+TESTS := $(shell echo problems/*/tests samples/*/tests)
+.PHONY: zip-tests
+zip-tests: $(TESTS:=.zip)
+
+%/tests.zip: zip-tests.py
+	(echo $@: $*/tests/*.in $*/tests/*.out; echo $*/tests/*.in $*/tests/*.out :) > $@.dep
+	shopt -s nullglob; ./$< --input $*/tests/*.in --output $*/tests/*.out > $@
+
+-include $(wildcard problems/*/tests.zip.dep samples/*/tests.zip.dep)
+
 %/description.html: %/description.md convert.html.erb
 	ruby -rerb -rnet/http -e 'puts ERB.new(File.read "convert.html.erb").result' < $< > $@
 
