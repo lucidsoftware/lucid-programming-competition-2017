@@ -1,4 +1,4 @@
-# Elevator
+# One Elevator
 
 Lucid just moved to a brand new office building on 10355 South Jordan Gateway. On the first day, everyone arrives at exactly 9:00 AM. Unfortunately, only one elevator is working.
 
