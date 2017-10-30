@@ -1,4 +1,4 @@
-# Bowling
+# Bowling Scoring
 
 Lucid is renting out the bowling alley for an Engineering activity, and we need to verify that the scoring system is correct.
 
