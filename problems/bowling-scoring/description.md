@@ -51,6 +51,7 @@ For each game print out the final score each on its own line.
         <td><pre>300
 150
 50</pre></td>
-        <td><pre>90</pre></td>
+        <td><pre>90
+146</pre></td>
     </tr>
 </table>
