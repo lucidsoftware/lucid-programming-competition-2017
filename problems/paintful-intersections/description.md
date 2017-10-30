@@ -1,8 +1,8 @@
 # Paintful Intersections
 
-Filbert is an intern at Lucid Software who is working on a bug in **Lucid**press. He hasn't figured out why, but overlapping shapes with fill colors aren't being rendered correctly. Filbert checks the code and notices that one of the rendering functions is incorrectly calculating the area of shapes, so the browser is running out of paint! Help Filbert fix the calculation before more users' documents lose their color.
+Filbert is an intern at Lucid Software who is working on a bug in **Lucid**press. He hasn't figured out why, but some of the shapes on documents are missing color. Filbert checks the code and quickly notices where the mistake is: one of the rendering functions is painting the intersection of shapes twice, so the browser is running out of paint! Help Filbert fix this function before more users' documents lose their color.
 
-Filbert needs to write code to determine the area of pairs of intersecting shapes. Consider this example of two overlapping squares:
+In order to prevent all this waste, Filbert needs to only request enough paint from the browser to draw the intersection of shapes once, so he needs to write code to determine the area of the intersection of a pair of shapes. Consider this example of two overlapping squares:
 
 <div align="center">
 <img alt="Overlapping squares" src="./squares.png" width="250px">
@@ -22,7 +22,7 @@ These equilateral triangles have a side length of 10 units. Recall that the form
 (1/2) * (1/2)*b*h = (1/2) * (1/2)*a*(a*sqrt(3)/2) = a^2*sqrt(3)/8 = 21.651
 ```
 
-Of course, Filbert can't calculate each of these areas by hand; most overlapping regions won't form such simple shapes anyway! Luckily, Filbert how to calculate the area of a polygon with clockwise or counterclockwise vertices <img src="https://latex.codecogs.com/gif.latex?%28x_1%2C%20y_1%29%2C%20%28x_2%2C%20y_2%29%2C%20%28x_3%2C%20y_3%29%2C%20%5Cldots%28x_n%2Cy_n%29">:
+Of course, Filbert can't calculate each of these areas by hand; most overlapping regions won't form such simple shapes anyway! Luckily, Filbert knows how to calculate the area of a polygon if the vertices are listed in clockwise or counterclockwise order <img src="https://latex.codecogs.com/gif.latex?%28x_1%2C%20y_1%29%2C%20%28x_2%2C%20y_2%29%2C%20%28x_3%2C%20y_3%29%2C%20%5Cldots%28x_n%2Cy_n%29">:
 
 <div align="center">
     <img alt="Shoelace formula" src="https://latex.codecogs.com/gif.latex?%5Cbegin%7Balign%7D%20A%26%3D%5Cfrac%7B1%7D%7B2%7D%5Cleft%7Cx_1%5Cleft%28y_n-y_1%5Cright%29+%5Csum_%7Bi%3D2%7D%5E%7Bn-1%7Dx_i%5Cleft%28y_%7Bi-1%7D-y_%7Bi+1%7D%5Cright%29+x_n%5Cleft%28y_1-y_n%5Cright%29%5Cright%7C%20%5Cnotag%20%5C%5C%20%26%3D%5Cfrac%7B1%7D%7B2%7D%5Cleft%7Cx_1%5Cleft%28y_n-y_1%5Cright%29+x_2%5Cleft%28y_1-y_2%5Cright%29+x_3%5Cleft%28y_2-y_3%5Cright%29+%5Cldots+x_n%5Cleft%28y_1-y_n%5Cright%29%5Cright%7C%20%5Cnotag%20%5Cend%7Balign%7D">
