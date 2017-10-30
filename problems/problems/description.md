@@ -3,7 +3,7 @@ Lucid writes problems every year for the annual programming competition. You hav
 
 It's important that the problems vary in topic and in difficultly.
 
-You've gathered a list of `K` candidate problems. Each problems has one of `N` topics and one of `N` difficulties. How possible sets of `N` problems exist such that each topic and difficulty is present?
+You've gathered a list of `K` candidate problems. Each problems has one of `N` topics and one of `N` difficulties. How many sets of `N` problems exist such that every topic and difficulty is present?
 
 # Constraints
 `1 <= N <= 8`
@@ -16,10 +16,10 @@ The first line will have two integers, N and K. K lines follow.
 
 Each of the following lines will describe a problem giving a description followed by a number separated by a space.
 
-Note: problems may have the same topic and difficulty as another problem, and still be considered different problems.
+Note: Each problem is considered to be distinct, even if another problem has the same topic and difficulty.
 
 # Output
-Output the number of possible problem sets of size `N` that can be selected where every topic and every difficulty is present.
+Output the number of problem sets of size `N` that can be selected where every topic and every difficulty is present.
 
 # Examples
 
