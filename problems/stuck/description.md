@@ -13,7 +13,7 @@ up()      // move to the nearest shape directly above
 random()  // randomly move to any shape (including the current)
 ```
 
-What is the fewest average function calls required to reach the exit?
+What is the minimum average function calls required to reach the exit?
 
 For example, consider the following 8-shape flowchart, where the exit link is at shape H:
 
@@ -25,7 +25,7 @@ For example, consider the following 8-shape flowchart, where the exit link is at
 * If you started at A, *could* call `right() down() right()`. But it would better on average to call `random()`.
   There's 1/8 chance you reach B, and call `down() right()` (3 total calls). There's 1/8 chance you reach H and exit (1
   call). There's even 1/8 chance you would remain at A, and call `random()` again (2+ calls). When each possible
-  outcome is weighted by its probabilty, the average number of function calls of the optimal strategy is 2.667.
+  outcome is weighted by its probabilty, the average of the optimal strategy is 2.667.
 
 ## Input
 

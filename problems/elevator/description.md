@@ -32,12 +32,13 @@ Each of the next N lines is the floor -5000 <= F <= 5000 that person needs to re
 
 ## Output
 
-The soonest time that everyone will be at their desk, given as hh:mm:ss XM.
+The time portion of the soonest moment when everyone will be at their desk, given as hh:mm:ss XM.
 
 ## Examples
 
 <table>
     <tr>
+        <th>Input</th>
         <th>Input</th>
         <th>Input</th>
         <th>Input</th>
@@ -60,8 +61,11 @@ The soonest time that everyone will be at their desk, given as hh:mm:ss XM.
 0
 9</pre></td>
         <td><pre>1 0</pre></td>
+        <td><pre>1 1
+-5000</pre></td>
     </tr>
     <tr>
+        <th>Output</th>
         <th>Output</th>
         <th>Output</th>
         <th>Output</th>
@@ -70,5 +74,6 @@ The soonest time that everyone will be at their desk, given as hh:mm:ss XM.
         <td><pre>09:01:20 AM</pre></td>
         <td><pre>09:05:00 AM</pre></td>
         <td><pre>09:00:00 AM</pre></td>
+        <td><pre>12:46:40 PM</pre></td>
     </tr>
 </table>
