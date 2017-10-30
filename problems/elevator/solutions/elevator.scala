@@ -1,5 +1,4 @@
 import java.util.Scanner
-import scala.util.control.Exception._
 
 object Main {
   def main(args: Array[String]) {
