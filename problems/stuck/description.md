@@ -31,7 +31,7 @@ average calls.
 
 ## Input
 
-The positions of the shapes are given as a grid. The first line is two space-separated integers 0 <= R, C <= 100, which
+The positions of the shapes are given as a grid. The first line is two space-separated integers 0 <= R, C <= 200, which
 are the numbers of rows and columns. The following R lines each have C characters. `^` represents the starting shape,
 `$` represents the ending shape, `O` represents another shape, and `.` represents empty space.
 
