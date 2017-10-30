@@ -18,14 +18,14 @@ Here's another example with overlapping triangles:
 
 These equilateral triangles have a side length of 10 units. Recall that the formula for the area of a triangle is `(1/2)*b*h`, and for an equilateral triangle, the altitude is equal to `a*sqrt(3)/2`, where `a` is the side length. You'll notice that the overlapping region is equal to half the area of one of the triangles. So the total area of the overlapping region is:
 
-```(1/2) * [(1/2)*b*h] = (1/2) * [(1/2)*a*(a*sqrt(3)/2)] = a^2*sqrt(3)/8 = 21.651```
+```
+(1/2) * (1/2)*b*h = (1/2) * (1/2)*a*(a*sqrt(3)/2) = a^2*sqrt(3)/8 = 21.651
+```
 
-<br>
-Of course, Filbert can't calculate each of these areas by hand; most overlapping regions won't form such simple shapes anyway! Luckily, Filbert remembers he can calculate the area of a "simple polygon" (one whose sides do not intersect) using the "shoelace formula", so long as he orders the vertices in either clockwise/counterclockwise order:
+Of course, Filbert can't calculate each of these areas by hand; most overlapping regions won't form such simple shapes anyway! Luckily, Filbert how to calculate the area of a polygon with clockwise or counterclockwise vertices <img src="https://latex.codecogs.com/gif.latex?%28x_1%2C%20y_1%29%2C%20%28x_2%2C%20y_2%29%2C%20%28x_3%2C%20y_3%29%2C%20%5Cldots%28x_n%2Cy_n%29">:
 
-<br>
 <div align="center">
-<img alt="Shoelace formula" src="./shoelace.png">
+    <img alt="Shoelace formula" src="https://latex.codecogs.com/gif.latex?%5Cbegin%7Balign%7D%20A%26%3D%5Cfrac%7B1%7D%7B2%7D%5Cleft%7Cx_1%5Cleft%28y_n-y_1%5Cright%29+%5Csum_%7Bi%3D2%7D%5E%7Bn-1%7Dx_i%5Cleft%28y_%7Bi-1%7D-y_%7Bi+1%7D%5Cright%29+x_n%5Cleft%28y_1-y_n%5Cright%29%5Cright%7C%20%5Cnotag%20%5C%5C%20%26%3D%5Cfrac%7B1%7D%7B2%7D%5Cleft%7Cx_1%5Cleft%28y_n-y_1%5Cright%29+x_2%5Cleft%28y_1-y_2%5Cright%29+x_3%5Cleft%28y_2-y_3%5Cright%29+%5Cldots+x_n%5Cleft%28y_1-y_n%5Cright%29%5Cright%7C%20%5Cnotag%20%5Cend%7Balign%7D">
 </div>
 
 ## Input
