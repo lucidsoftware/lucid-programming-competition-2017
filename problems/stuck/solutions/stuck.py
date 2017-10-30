@@ -1,4 +1,5 @@
 # Python 3
+import itertools
 import sys
 
 rows, columns = map(int, input().split())
@@ -14,25 +15,18 @@ distances = [[float('inf')] * columns for _ in range(rows)]
 edge = [end]
 distance = 0
 while edge:
-    new_edge = []
-    for i, j in edge:
+    edge, old_edge = [], edge
+    for i, j in old_edge:
         if distances[i][j] == float('inf'):
             distances[i][j] = distance
-            adjacent = (
+            directions = (
                 ((i, j) for i in range(i - 1, -1, -1 ) if grid[i][j] != '.'),
                 ((i, j) for i in range(i + 1, rows   ) if grid[i][j] != '.'),
                 ((i, j) for j in range(j - 1, -1, -1 ) if grid[i][j] != '.'),
                 ((i, j) for j in range(j + 1, columns) if grid[i][j] != '.'),
             )
-            for x, a in enumerate(adjacent):
-                try:
-                    position = next(a)
-                except StopIteration:
-                    pass
-                else:
-                    new_edge.append(position)
+            edge.extend(position for direction in directions for position in itertools.islice(direction, 0, 1))
     distance += 1
-    edge = new_edge
 
 fixed = [distances[i][j] for i in range(rows) for j in range(columns) if grid[i][j] != '.']
 total = len(fixed)
