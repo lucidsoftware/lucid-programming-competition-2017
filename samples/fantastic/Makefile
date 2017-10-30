@@ -1,4 +1,4 @@
-problems/fantastic/solutions/Main.class: problems/fantastic/solutions/fantastic.java
+samples/fantastic/solutions/Main.class: samples/fantastic/solutions/fantastic.java
 	javac -d $(<D) -sourcepath $(<D) $<
 
-test-fantastic: problems/fantastic/solutions/Main.class
+test-fantastic: samples/fantastic/solutions/Main.class

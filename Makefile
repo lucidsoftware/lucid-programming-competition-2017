@@ -12,7 +12,7 @@ SAMPLE_DESCRIPTIONS_HTML := $(SAMPLE_DESCRIPTIONS_MD:%.md=%.html)
 
 all: problem-descriptions.pdf sample-descriptions.pdf
 
-include $(wildcard problems/*/Makefile)
+include $(wildcard problems/*/Makefile) $(wildcard samples/*/Makefile)
 
 test-%:
 	@for f in $(sort $(wildcard problems/$*/solutions/*.run samples/$*/solutions/*.run)); do \
