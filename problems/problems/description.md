@@ -1,7 +1,9 @@
 # Problems
-Lucid writes problems every year for the annual programming competition. You have been tasked with selecting which problems should be used this year. It's challenging because there are many different skill levels which participate in the competition. You want every team to be able to solve at least 1 problem (even the students brand new to programming), you want every problem to be solved by at least one team, and you don't want any team to solve all of the problems.
+Lucid writes problems every year for the annual programming competition. You have been tasked with selecting which problems should be used this year.
 
-You've gathered a list of `K` problems, each with one of `N` topics and `N` difficulties and you need to select `N` problems from the list such that each topic and each difficulty is in your final selection. How many possible problem sets can you select?
+It's important that the problems vary in topic and in difficultly.
+
+You've gathered a list of `K` candidate problems. Each problems has one of `N` topics and one of `N` difficulties. How possible sets of `N` problems exist such that each topic and difficulty is present?
 
 # Constraints
 `1 <= N <= 8`
