@@ -22,12 +22,10 @@ For example, consider the following 8-shape flowchart, where the exit link is at
 </div>
 
 * If you started at B, you would call `down() right()`, so the fewest average calls are 2.
-* If you started at E, you would call `random()`. There's 1/8 chance you reach B, and call `down() right()` (3 total
-calls). There's 1/8 chance you reach H and exit (1 call). There's even 1/8 chance you would remain at E, and call
-`random()` again (2+ calls). When each possible outcome is weighted by its probabilty, the average number of function
-calls of the optimal strategy is 2.667.
-* If you started at A, *could* call `right() down() right()`. But it would optimal to instead call `random()`, for 2.667
-average calls.
+* If you started at A, *could* call `right() down() right()`. But it would better on average to call `random()`.
+  There's 1/8 chance you reach B, and call `down() right()` (3 total calls). There's 1/8 chance you reach H and exit (1
+  call). There's even 1/8 chance you would remain at A, and call `random()` again (2+ calls). When each possible
+  outcome is weighted by its probabilty, the average number of function calls of the optimal strategy is 2.667.
 
 ## Input
 
@@ -53,8 +51,8 @@ O.^OO
 .O...
 O.O$.</pre></td>
         <td><pre>3 5
-O.OOO
-.^...
+^.OOO
+.O...
 O.O$.</pre></td>
         <td><pre>2 2
 $.
