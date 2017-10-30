@@ -29,6 +29,8 @@ function kdtree (list of points pointList, int depth)
 }
 ```
 
+For this problem, k=2.
+
 ## Input
 
 The first line is a single integer N, the number of points on the page.

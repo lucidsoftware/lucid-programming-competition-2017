@@ -28,11 +28,17 @@ Fortunately, Filbert knows the more general solutions for calculating the area o
     <img alt="Shoelace formula" src="https://latex.codecogs.com/gif.latex?%5Cbegin%7Balign%7D%20A%26%3D%5Cfrac%7B1%7D%7B2%7D%5Cleft%7Cx_1%5Cleft%28y_n-y_1%5Cright%29+%5Csum_%7Bi%3D2%7D%5E%7Bn-1%7Dx_i%5Cleft%28y_%7Bi-1%7D-y_%7Bi+1%7D%5Cright%29+x_n%5Cleft%28y_1-y_n%5Cright%29%5Cright%7C%20%5Cnotag%20%5C%5C%20%26%3D%5Cfrac%7B1%7D%7B2%7D%5Cleft%7Cx_1%5Cleft%28y_n-y_1%5Cright%29+x_2%5Cleft%28y_1-y_2%5Cright%29+x_3%5Cleft%28y_2-y_3%5Cright%29+%5Cldots+x_n%5Cleft%28y_1-y_n%5Cright%29%5Cright%7C%20%5Cnotag%20%5Cend%7Balign%7D">
 </div>
 
+Some additional info:
+
+* The intersection of two convex polygons is convex.
+* The line passing through $(x_1, y_1)$ and (x_2, y_2) is defined by (x_2 - x_1)(y - y_1) = (y_2 - y_1)(x - x_1).
+* A point (x, y) is inside a convex polygon if (x_1, y_1), (x_2, y_2), ... (x_n, y_n) iff (x - x_i)(y - y_i) - (x_{i+1} - x_i)(y_{i+1} - x_i) is always nonpostive or always nonnegative for all i.
+
 ## Input
 
 The input will describe two convex polygons. The first line will contain an integer `N < 100`, the number of sides for the first polygon. The next `N` lines will contain a pair of decimal numbers `(x, y`),  representing the coordinates of the first polygon's vertices. This will be followed by a line containing an integer `M < 100`, the number of sides for the second polygon. The last `M` lines will contain the coordinates for the second set of vertices in the same fashion.
 
-The vertices for each polygon can be given in any order. (Hint: One way to order vertices is computing atan2 from the center of the shape.)
+The vertices for each polygon can be given in any order. (Hint: One way to order vertices is computing atan2, using a selected vertex as the origin.)
 
 Don't forget to account for cases where the polygons are completely disjoint (the area is zero) or where one polygon is contained entirely within the other (the area is the area of the contained polygon)!
 

@@ -59,6 +59,10 @@ process.stdin.on('end', function() {
             problems[key] = [idx, parseInt(difficulty, 10), 1];
         }
     }
-    console.log(countWays(Object.values(problems), 0, set, set));
+    var values = [];
+    for (var key in problems) {
+        values.push(problems[key]);
+    }
+    console.log(countWays(values, 0, set, set));
 
 });
