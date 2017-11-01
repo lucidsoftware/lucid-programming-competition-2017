@@ -2,5 +2,10 @@
 *.dep
 *.html
 *.pdf
+*.zip
 
+.npm
+.tsc
 tests.zip
+node_modules/
+scoreboard/*.js

@@ -4,6 +4,8 @@
     "dependencies": {
         "request":"2.83.0",
         "request-promise":"4.2.2",
-        "escape-html":"1.0.3"
+        "escape-html":"1.0.3",
+        "typescript": "2.6.1",
+        "@types/node": "8.0.47"
     }
 }

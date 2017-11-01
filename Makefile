@@ -43,3 +43,20 @@ problem-descriptions.pdf: $(PROBLEM_DESCRIPTIONS_HTML) $(shell find problems -na
 
 sample-descriptions.pdf: $(SAMPLE_DESCRIPTIONS_HTML) $(shell find samples -name '*.png')
 	wkhtmltopdf -g --print-media-type $(sort $(PROBLEM_DESCRIPTIONS_HTML)) $@
+
+scoreboard/.npm:
+	rm $(@D)/node_modules
+	cd $(@D) && yarn install
+	> $@
+
+scoreboard/.tsc: scoreboard/.npm-install $(wildcard scoreboard/*.ts)
+	$(@D)/node_modules/.bin/tsc -p $(@D)
+	> $@
+
+scoreboard.zip: $(shell find scoreboard) scoreboard/.npm-install scoreboard/.tsc-compile
+	rm -f $@
+	cd scoreboard && zip -qr ../scoreboard node_modules *.js
+
+.PHONY: deploy-scoreboard
+deploy-scoreboard: scoreboard.zip
+	aws-staging --region us-west-1 lambda update-function-code --function-name competition-2017-leaderboard --zip-file fileb://$< --publish
