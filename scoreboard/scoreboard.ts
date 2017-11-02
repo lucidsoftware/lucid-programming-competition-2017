@@ -90,6 +90,11 @@ let problems = [
     'tron-flowchart',
 ];
 
+const CONTEST_NAME= 'lucid-2017-internal';
+
+const BASE_URL = `https://www.hackerrank.com/contests/${CONTEST_NAME}/challenges/`;
+const REST_URL = `https://www.hackerrank.com/rest/contests/${CONTEST_NAME}/judge_submissions/?offset=0&limit=10000`
+
 export async function leaderboard() {
 
     var cookiejar = rp.jar();
@@ -97,7 +102,7 @@ export async function leaderboard() {
 
     let data = await rp({
         method:'GET',
-        uri: 'https://www.hackerrank.com/rest/contests/lucid-2017-internal/judge_submissions/?offset=0&limit=10000',
+        uri: REST_URL,
         jar: cookiejar,
         json: true
     });
@@ -119,9 +124,11 @@ export async function leaderboard() {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"></head>
     <body>
 
-    <div class="container"><table class="bordered striped centered"><tbody>\n<thead><tr><th>Rank</th><th>Name</th>`;
+    <div class="container">
+    <h1>Lucid Programming Competition Leaderboard</h1>
+    <table class="bordered striped centered"><tbody>\n<thead><tr><th>Rank</th><th>Name</th>`;
     problems.forEach(p => {
-        result += `<th>${p}</th>`;
+        result += `<th><a href="${BASE_URL+p}">${p}</a></th>`;
     });
     result += '<th>Score</th><th>Time</th></tr></thead>';
 
