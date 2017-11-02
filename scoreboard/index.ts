@@ -2,7 +2,7 @@ import * as scoreboard from './scoreboard';
 
 exports.handler = async (event, context, callback) => {
     try {
-        callback(null, await scoreboard.leaderboard(event['queryStringParameters']['school']));
+        callback(null, await scoreboard.leaderboard(event.school));
     } catch(e) {
         callback(e);
     }

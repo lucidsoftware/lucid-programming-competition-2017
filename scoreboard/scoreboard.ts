@@ -10,6 +10,8 @@ let cookie = new tough.Cookie({
     maxAge: 31536000
 });
 
+const LOCK_SCOREBOARD = process.env['LOCK_SCOREBOARD'];
+
 function bucket(data, key) {
     let result = {};
     data.forEach(d => {
@@ -31,6 +33,9 @@ function calculateScore(submissions) {
 
     submissions.forEach(submission => {
         if(!submission.in_contest_bounds) {
+            return;
+        }
+        if(LOCK_SCOREBOARD && submission.time_from_start > 3.5*60) {
             return;
         }
         let slug = submission.challenge.slug;
@@ -92,34 +97,63 @@ let problems = [
 
 const CONTEST_NAME= 'lucid-2017-internal';
 
+const LIMIT = 100;
 const BASE_URL = `https://www.hackerrank.com/contests/${CONTEST_NAME}/challenges/`;
-const REST_URL = `https://www.hackerrank.com/rest/contests/${CONTEST_NAME}/judge_submissions/?offset=0&limit=10000`
+const REST_URL = `https://www.hackerrank.com/rest/contests/${CONTEST_NAME}/judge_submissions/?limit=` + LIMIT;
+
+var cookiejar = rp.jar();
+cookiejar.setCookie(cookie, 'https://www.hackerrank.com');
+
+function getPage(page: number) {
+    return rp({
+        method:'GET',
+        uri: REST_URL + '&offset=' + page*LIMIT,
+        jar: cookiejar,
+        json: true
+    });
+}
+
+async function getSubmissions() {
+
+    let first = await getPage(0);
+    let rest = [];
+    for(let i=1; i*LIMIT < first.total; i++) {
+        rest.push(getPage(i));
+    }
+
+    let result = first.models;
+
+    let otherPages = await Promise.all(rest);
+
+    otherPages.forEach(data => {
+        result.push(...data.models);
+    });
+
+    let seen = {};
+    return result.filter(submission => {
+        if(seen[submission.id]) {
+            return false;
+        }
+        seen[submission.id] = true;
+        return true;
+    });
+}
 
 export async function leaderboard(schoolFilter?:string) {
 
     let abbreviations = {
-        'Brigham Young University': 'BYU',
-        'BYU': 'BYU',
-        'Utah State University': 'USU',
-        'USU': 'USU',
-        'University of Utah': 'Utah',
-        'U of U': 'Utah',
-        'Utah': 'Utah',
+        'byu': 'BYU',
+        'usu': 'USU',
+        'utah': 'Utah',
     };
+    schoolFilter = schoolFilter && schoolFilter.toLocaleLowerCase();
     if(schoolFilter && !(schoolFilter in abbreviations)) {
         schoolFilter = '';
     }
-    var cookiejar = rp.jar();
-    cookiejar.setCookie(cookie, 'https://www.hackerrank.com');
 
-    let data = await rp({
-        method:'GET',
-        uri: REST_URL,
-        jar: cookiejar,
-        json: true
-    });
+    let data = await getSubmissions();
 
-    let byUserName = bucket(data.models, 'hacker_username');
+    let byUserName = bucket(data, 'hacker_username');
 
     let profiles = {};
     let promises = [];
@@ -145,12 +179,39 @@ export async function leaderboard(schoolFilter?:string) {
 
 
     let result = `<html><head><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"></head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <style>.container { min-width:1300px; } .title {color: black;}</style>
+    <style>
+    .tooltip {
+        position: relative;
+    }
+
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 300px;
+        background-color: black;
+        color: #fff;
+        text-align: left;
+        padding: 5px;
+        border-radius: 6px;
+
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: calc(100% + 10px);
+        transform: translateY(-50%);
+    }
+
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+    }
+    </style>
+    </head>
     <body>
 
     <div class="container">
-    <h1>LPC Leaderboard</h1>
-    <table class="bordered striped centered"><tbody>\n<thead><tr><th>Rank</th><th>Name</th><th>School</th>`;
+    <h1><a class="title" href="?">Lucid Programming Competition Leaderboard</a></h1>
+    <table class="bordered striped centered"><tbody>\n<thead><tr><th>Rank</th><th>Name</th><th>Location</th>`;
     problems.forEach(p => {
         result += `<th><a href="${BASE_URL+p}">${p}</a></th>`;
     });
@@ -161,10 +222,15 @@ export async function leaderboard(schoolFilter?:string) {
         if(score.score == 0) {
             continue;
         }
+        let bio = (profiles[score.userName].model.short_bio || '').split('\n');
+        let school = (bio.shift() || '').toLocaleLowerCase();
 
-        let row = `\n<tr><td>${i+1}</td><td><a href="https://www.hackerrank.com/${score.userName}">${escape(profiles[score.userName].model.name)}</a></td>`;
-        let school = profiles[score.userName].model.school;
-        if(schoolFilter && schoolFilter != abbreviations[school]) {
+        let names = bio.map(n => escape(n)).join('<br>');
+
+        let nameTooltip = bio.length > 0 ? 'Competitors:<br>' + names : 'Update the "About" field to have the school you are competing at as the first line (BYU, Utah, or USU), followed by the name of each person on your team on the next lines.';
+
+        let row = `\n<tr><td>${i+1}</td><td><a class="tooltip" href="https://www.hackerrank.com/${score.userName}">${escape(profiles[score.userName].model.name)} <span class="tooltiptext">${nameTooltip}</span></a></td>`;
+        if(schoolFilter && schoolFilter != school) {
             continue;
         }
         if(abbreviations[school]) {
@@ -174,7 +240,7 @@ export async function leaderboard(schoolFilter?:string) {
                 row += `<td>${abbreviations[school]}</td>`;
             }
         } else {
-            row += `<td><a href="https://www.hackerrank.com/settings/profile">Set School</td>`;
+            row += `<td><a class="tooltip" href="https://www.hackerrank.com/settings/bio">Set Location<span class="tooltiptext">Update the "About" field to have the school you are competing at as the first line (BYU, Utah, or USU), followed by the name of each person on your team on the next lines.</span></td>`;
         }
         problems.forEach(p => {
             row += '<td>';
