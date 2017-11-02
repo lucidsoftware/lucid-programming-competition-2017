@@ -44,12 +44,12 @@ problem-descriptions.pdf: $(PROBLEM_DESCRIPTIONS_HTML) $(shell find problems -na
 sample-descriptions.pdf: $(SAMPLE_DESCRIPTIONS_HTML) $(shell find samples -name '*.png')
 	wkhtmltopdf -g --print-media-type $(sort $(PROBLEM_DESCRIPTIONS_HTML)) $@
 
-scoreboard/.npm:
-	rm $(@D)/node_modules
+scoreboard/.npm-install:
+	rm -rf $(@D)/node_modules
 	cd $(@D) && yarn install
 	> $@
 
-scoreboard/.tsc: scoreboard/.npm-install $(wildcard scoreboard/*.ts)
+scoreboard/.tsc-compile: scoreboard/.npm-install $(wildcard scoreboard/*.ts)
 	$(@D)/node_modules/.bin/tsc -p $(@D)
 	> $@
 
