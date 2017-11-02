@@ -35,14 +35,14 @@ zip-tests: $(TESTS:=.zip)
 
 -include $(wildcard problems/*/tests.zip.dep samples/*/tests.zip.dep)
 
-%/description.html: %/description.md convert.html.erb
+%.html: %.md convert.html.erb
 	ruby -rerb -rnet/http -e 'puts ERB.new(File.read "convert.html.erb").result' < $< > $@
 
 problem-descriptions.pdf: $(PROBLEM_DESCRIPTIONS_HTML) $(shell find problems -name '*.png' -o -name '*.svg')
 	wkhtmltopdf -g --print-media-type $(sort $(PROBLEM_DESCRIPTIONS_HTML)) $@
 
-sample-descriptions.pdf: $(SAMPLE_DESCRIPTIONS_HTML) $(shell find samples -name '*.png')
-	wkhtmltopdf -g --print-media-type $(sort $(PROBLEM_DESCRIPTIONS_HTML)) $@
+instructions.pdf: instructions.html rules.html $(SAMPLE_DESCRIPTIONS_HTML) $(shell find samples -name '*.png')
+	wkhtmltopdf -g --print-media-type instructions.html rules.html $(sort $(SAMPLE_DESCRIPTIONS_HTML)) $@
 
 scoreboard/.npm-install:
 	rm -rf $(@D)/node_modules
