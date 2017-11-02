@@ -30,6 +30,9 @@ function calculateScore(submissions) {
     });
 
     submissions.forEach(submission => {
+        if(!submission.in_contest_bounds) {
+            return;
+        }
         let slug = submission.challenge.slug;
         if(!(problemStatus[slug])) {
             problemStatus[slug] = {
