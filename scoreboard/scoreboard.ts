@@ -95,8 +95,20 @@ const CONTEST_NAME= 'lucid-2017-internal';
 const BASE_URL = `https://www.hackerrank.com/contests/${CONTEST_NAME}/challenges/`;
 const REST_URL = `https://www.hackerrank.com/rest/contests/${CONTEST_NAME}/judge_submissions/?offset=0&limit=10000`
 
-export async function leaderboard() {
+export async function leaderboard(schoolFilter?:string) {
 
+    let abbreviations = {
+        'Brigham Young University': 'BYU',
+        'BYU': 'BYU',
+        'Utah State University': 'USU',
+        'USU': 'USU',
+        'University of Utah': 'Utah',
+        'U of U': 'Utah',
+        'Utah': 'Utah',
+    };
+    if(schoolFilter && !(schoolFilter in abbreviations)) {
+        schoolFilter = '';
+    }
     var cookiejar = rp.jar();
     cookiejar.setCookie(cookie, 'https://www.hackerrank.com');
 
@@ -137,7 +149,7 @@ export async function leaderboard() {
     <body>
 
     <div class="container">
-    <h1>Lucid Programming Competition Leaderboard</h1>
+    <h1>LPC Leaderboard</h1>
     <table class="bordered striped centered"><tbody>\n<thead><tr><th>Rank</th><th>Name</th><th>School</th>`;
     problems.forEach(p => {
         result += `<th><a href="${BASE_URL+p}">${p}</a></th>`;
@@ -152,16 +164,15 @@ export async function leaderboard() {
 
         let row = `\n<tr><td>${i+1}</td><td><a href="https://www.hackerrank.com/${score.userName}">${escape(profiles[score.userName].model.name)}</a></td>`;
         let school = profiles[score.userName].model.school;
-        let abbreviations = {
-            'Brigham Young University': 'BYU',
-            'BYU': 'BYU',
-            'Utah State University': 'USU',
-            'USU': 'USU',
-            'University of Utah': 'U of U',
-            'U of U': 'U of U',
-        };
+        if(schoolFilter && schoolFilter != abbreviations[school]) {
+            continue;
+        }
         if(abbreviations[school]) {
-            row += `<td>${abbreviations[school]}</td>`;
+            if(!schoolFilter) {
+                row += `<td><a href="?school=${abbreviations[school]}">${abbreviations[school]}</a></td>`;
+            } else {
+                row += `<td>${abbreviations[school]}</td>`;
+            }
         } else {
             row += `<td><a href="https://www.hackerrank.com/settings/profile">Set School</td>`;
         }
