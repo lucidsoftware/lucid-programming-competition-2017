@@ -5,7 +5,9 @@
 *.zip
 
 .npm
+.npm-install
 .tsc
+.tsc-compile
 tests.zip
 node_modules/
 scoreboard/*.js
