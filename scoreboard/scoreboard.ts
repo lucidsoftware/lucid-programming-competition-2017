@@ -210,12 +210,14 @@ export async function leaderboard(schoolFilter?:string) {
     <body>
 
     <div class="container">
-    <h1><a class="title" href="?">Lucid Programming Competition Leaderboard</a></h1>
-    <table class="bordered striped centered"><tbody>\n<thead><tr><th>Rank</th><th>Name</th><th>Location</th>`;
+    <h1><a class="title" href="?">Lucid Programming Competition Leaderboard</a></h1>`
+    let table = `<table class="bordered striped centered"><tbody>\n<thead><tr><th>Rank</th><th>Name</th><th>Location</th>`;
     problems.forEach(p => {
-        result += `<th><a href="${BASE_URL+p}">${p}</a></th>`;
+        table += `<th><a href="${BASE_URL+p}">${p}</a></th>`;
     });
-    result += '<th>Score</th><th>Time</th></tr></thead>';
+    table += '<th>Score</th><th>Time</th></tr></thead>';
+
+    let hasScore = false;
 
     for(let i=0; i<scores.length; i++) {
         let score = scores[i];
@@ -254,9 +256,18 @@ export async function leaderboard(schoolFilter?:string) {
         });
         row += `<td>${score.score}</td><td>${toTimeStr(score.time)}</td>`;
         row += '</tr>';
-        result += row;
+        table += row;
+        hasScore = true;
     }
-    result += '</tbody></table></div></body></html>';
+    table += '</tbody></table>';
+
+    if(!hasScore) {
+        result += `The <a href="https://www.hackerrank.com/rest/contests/${CONTEST_NAME}">Lucid Programing Competition</a> Leaderboard will be enabled after the first successful submission`;
+    } else {
+        result += table;
+    }
+
+    result += '</div></body></html>';
 
     return result;
 };
