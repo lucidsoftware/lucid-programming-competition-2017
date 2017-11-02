@@ -109,6 +109,18 @@ export async function leaderboard() {
 
     let byUserName = bucket(data.models, 'hacker_username');
 
+    let profiles = {};
+    let promises = [];
+    for(let user in byUserName) {
+        promises.push(rp({
+            method:'GET',
+            uri: 'https://www.hackerrank.com/rest/contests/master/hackers/' + user,
+            jar:cookiejar,
+            json: true,
+        }).then(result => profiles[user] = result));
+    }
+    await Promise.all(promises);
+
     let scores = [];
     for(let user in byUserName) {
         let submissions = byUserName[user];
@@ -126,7 +138,7 @@ export async function leaderboard() {
 
     <div class="container">
     <h1>Lucid Programming Competition Leaderboard</h1>
-    <table class="bordered striped centered"><tbody>\n<thead><tr><th>Rank</th><th>Name</th>`;
+    <table class="bordered striped centered"><tbody>\n<thead><tr><th>Rank</th><th>Name</th><th>School</th>`;
     problems.forEach(p => {
         result += `<th><a href="${BASE_URL+p}">${p}</a></th>`;
     });
@@ -138,7 +150,21 @@ export async function leaderboard() {
             continue;
         }
 
-        let row = `\n<tr><td>${i+1}</td><td>${escape(score.userName)}</td>`;
+        let row = `\n<tr><td>${i+1}</td><td><a href="https://www.hackerrank.com/${score.userName}">${escape(profiles[score.userName].model.name)}</a></td>`;
+        let school = profiles[score.userName].model.school;
+        let abbreviations = {
+            'Brigham Young University': 'BYU',
+            'BYU': 'BYU',
+            'Utah State University': 'USU',
+            'USU': 'USU',
+            'University of Utah': 'U of U',
+            'U of U': 'U of U',
+        };
+        if(abbreviations[school]) {
+            row += `<td>${abbreviations[school]}</td>`;
+        } else {
+            row += `<td><a href="https://www.hackerrank.com/settings/profile">Set School</td>`;
+        }
         problems.forEach(p => {
             row += '<td>';
             if(score.problemStatus[p] && score.problemStatus[p].complete) {
