@@ -6,7 +6,7 @@ Append " and it will be fantastic" to the given statement.
 
 ## Input
 
-Input is a statement consisting of printable ASCII characters. The statement is 120 characters or less.
+Input is a statement consisting of 1 to 120 (inclusive) printable ASCII characters.
 
 ## Output
 
