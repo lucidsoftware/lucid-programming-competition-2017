@@ -35,7 +35,7 @@ function calculateScore(submissions) {
         if(!submission.in_contest_bounds) {
             return;
         }
-        if(LOCK_SCOREBOARD && submission.time_from_start > 3.5*60) {
+        if(LOCK_SCOREBOARD && submission.time_from_start > 3*60) {
             return;
         }
         let slug = submission.challenge.slug;
@@ -271,3 +271,148 @@ export async function leaderboard(schoolFilter?:string) {
 
     return result;
 };
+
+export async function getBaloonQueue(schoolFilter:string = '') {
+    let submissions = await getSubmissions();
+    let byUserName = bucket(submissions, 'hacker_username');
+
+    let profiles = {};
+    let promises = [];
+    for(let user in byUserName) {
+        promises.push(rp({
+            method:'GET',
+            uri: 'https://www.hackerrank.com/rest/contests/master/hackers/' + user,
+            jar:cookiejar,
+            json: true,
+        }).then(result => profiles[user] = result));
+    }
+    await Promise.all(promises);
+
+    let schools = {
+        'byu': true,
+        'utah': true,
+        'usu': true,
+    };
+
+    if(!(schoolFilter in schools)) {
+        schoolFilter = '';
+    }
+
+    let acceptedAtSchool = submissions.filter(submission => {
+        if(LOCK_SCOREBOARD && submission.time_from_start > 3*60) {
+            return;
+        }
+        let bio = (profiles[submission.hacker_username].model.short_bio || '').split('\n');
+        let school = (bio.shift() || '').toLocaleLowerCase();
+        return submission.status == 'Accepted' && school && school in schools && (!schoolFilter || schoolFilter == school);
+    });
+
+    acceptedAtSchool.sort((a,b) => {
+        return a.time_from_start - b.time_from_start;
+    });
+
+    let scores = {};
+    let solved = {};
+
+    let result = acceptedAtSchool.filter(submission => {
+        let key = submission.challenge.slug + ',' + submission.hacker_username;
+        if(solved[key]) {
+            return false;
+        }
+        solved[key] = true;
+        return true;
+    }).map(submission => {
+        if(!(submission.hacker_username in scores)) {
+            scores[submission.hacker_username] = 0;
+        }
+        scores[submission.hacker_username]++;
+        let bio = (profiles[submission.hacker_username].model.short_bio || '').split('\n');
+        let school = (bio.shift() || '').toLocaleLowerCase();
+        return {
+            name: profiles[submission.hacker_username].model.name,
+            score: scores[submission.hacker_username],
+            id: submission.id,
+            userId: submission.hacker_id,
+            problem: submission.challenge.name,
+            time: toTimeStr(submission.time_from_start),
+            school: school,
+        }
+    });
+
+    let html = `<html>
+    <head>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <style>
+            .item {
+                cursor: pointer;
+                transition: 0.5s all;
+            }
+            .selected {
+                background-color: #42a5f5;
+                text-decoration: line-through;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+        <table>
+            <tbody>
+                <tr>
+                    <th>Name</th>
+                    <th>School</th>
+                    <th>Problem</th>
+                    <th>Location</th>
+                    <th>Time Solved</th>
+                    <th>Score</th>
+                </tr>`;
+
+    result.reverse();
+    result.forEach(s => {
+        html += `\n    <tr class="item" id="${s.id}" data-user="${s.userId}">
+        <td>${escape(s.name)}</td>
+        <td>${escape(s.school)}</td>
+        <td>${escape(s.problem)}</td>
+        <td><input type="text"></td>
+        <td>${escape(s.time)}</td>
+        <td>${escape(s.score)}</td>
+    </tr>`
+    })
+
+    html += `\n            </tbody>
+        </table></div>
+    <script>
+        document.querySelectorAll('.item').forEach(function(item) {
+            item.onclick = function() {
+                var selected = item.classList.toggle('selected');
+                localStorage.setItem(item.id, selected);
+            }
+
+            let input = item.querySelector('input');
+
+            input.onclick = function(event) {
+                event.stopPropagation();
+            };
+
+            input.onchange = function() {
+                document.querySelectorAll('.item').forEach(function(check) {
+                    if(check.dataset['user'] == item.dataset['user']) {
+                        check.querySelector('input').value = input.value;
+                    }
+                });
+                localStorage.setItem(item.dataset['user']+'-location', input.value);
+            };
+
+            if(localStorage.getItem(item.id)) {
+                item.classList.add('selected');
+            }
+            if(localStorage.getItem(item.dataset['user']+'-location')) {
+                input.value = localStorage.getItem(item.dataset['user']+'-location');
+            }
+        });
+    </script>
+    </body>
+</html>`;
+
+    return html;
+}
