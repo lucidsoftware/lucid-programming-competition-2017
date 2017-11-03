@@ -262,7 +262,7 @@ export async function leaderboard(schoolFilter?:string) {
     table += '</tbody></table>';
 
     if(!hasScore) {
-        result += `The <a href="https://www.hackerrank.com/rest/contests/${CONTEST_NAME}">Lucid Programing Competition</a> Leaderboard will be enabled after the first successful submission`;
+        result += `The <a href="https://www.hackerrank.com/contests/${CONTEST_NAME}">Lucid Programing Competition</a> Leaderboard will be enabled after the first successful submission`;
     } else {
         result += table;
     }
