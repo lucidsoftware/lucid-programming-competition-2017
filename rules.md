@@ -6,15 +6,15 @@ This contest is open to all college students. Each team may have up to three mem
 
 ## Problems
 
-There are 10 problems of varying difficulty. The problems focus on reasoning, critical thinking, and algorithm problem solving. For each problem, you are provided a description, input format, output format, and samples.
+There are 10 problems focusing on reasoning and algorithmic problem solving. For each problem, you are provided a description, input format, output format, and samples.
 
-Clarification may be requested about the problems. Each problem has been reviwed for clarity and correctness, so it is unlikly that any further information will be given. If an ambiguity or error is discovered, all contestants will be notified.
+Clarification requests may be submitted to [https://www.hackerrank.com/inbox](https://www.hackerrank.com/inbox). Each problem has been carefully reviwed for clarity and correctness, so it is unlikly that any further information will be given. If an ambiguity or error is discovered, all contestants will be notified at [https://www.hackerrank.com/notifications](https://www.hackerrank.com/notifications).
 
 ## Submissions
 
 A submission consists of your source code, in one file, limited to 50kb. For details on compilers, runtimes, and time and memory limits, see [https://www.hackerrank.com/environment](https://www.hackerrank.com/environment). The time and memory limits are the same for all problems, unless indicated otherwise.
 
-Input is given on stdin and output is expected on stdout. See [https://www.hackerrank.com/environment/sample-problem](https://www.hackerrank.com/environment/sample-problem) for examples in various languages. Input may or may not end with a new line character.
+Input is given on stdin and output is expected on stdout. See  [https://www.hackerrank.com/environment/sample-problem](https://www.hackerrank.com/environment/sample-problem) for examples in various languages. Input may or may not end with a new line character.
 
 Before submitting, it is recommended that you run your code against the samples. HackerRank shows you stdout and stderr when running in this manner.
 
@@ -25,7 +25,7 @@ Scoring is done [ACM ICPC-style](https://icpc.baylor.edu/regionals/rules):
 1. Score is the number of problems correctly solved.
 1. To break ties, sum the solved times, plus 20 minutes for incorrect submissions to subsequently solved problems. The smallest time wins.
 
-The leaderboard is available at [https://contest.golucid.co/](https://contest.golucid.co/). One hour prior to the end of the contest, the leaderboard will be frozen.
+The leaderboard is available at  [https://contest.golucid.co/](https://contest.golucid.co/). One hour prior to the end of the contest, the leaderboard will be frozen.
 
 ## Resources
 

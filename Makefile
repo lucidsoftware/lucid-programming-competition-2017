@@ -10,7 +10,7 @@ PROBLEM_DESCRIPTIONS_HTML := $(PROBLEM_DESCRIPTIONS_MD:%.md=%.html)
 SAMPLE_DESCRIPTIONS_MD := $(wildcard samples/*/description.md)
 SAMPLE_DESCRIPTIONS_HTML := $(SAMPLE_DESCRIPTIONS_MD:%.md=%.html)
 
-all: problem-descriptions.pdf sample-descriptions.pdf
+all: problems.pdf instructions.pdf
 
 include $(wildcard problems/*/Makefile) $(wildcard samples/*/Makefile)
 
@@ -38,11 +38,13 @@ zip-tests: $(TESTS:=.zip)
 %.html: %.md convert.html.erb
 	ruby -rerb -rnet/http -e 'puts ERB.new(File.read "convert.html.erb").result' < $< > $@
 
-problem-descriptions.pdf: $(PROBLEM_DESCRIPTIONS_HTML) $(shell find problems -name '*.png' -o -name '*.svg')
-	wkhtmltopdf -g --print-media-type $(sort $(PROBLEM_DESCRIPTIONS_HTML)) $@
+PDF_OPTIONS := -g -B 15mm -L 20mm -R 20mm -T 20mm -s Letter --print-media-type
+
+problems.pdf: $(PROBLEM_DESCRIPTIONS_HTML) $(shell find problems -name '*.png' -o -name '*.svg')
+	wkhtmltopdf $(PDF_OPTIONS) $(sort $(PROBLEM_DESCRIPTIONS_HTML)) $@
 
 instructions.pdf: instructions.html rules.html $(SAMPLE_DESCRIPTIONS_HTML) $(shell find samples -name '*.png')
-	wkhtmltopdf -g --print-media-type instructions.html rules.html $(sort $(SAMPLE_DESCRIPTIONS_HTML)) $@
+	wkhtmltopdf $(PDF_OPTIONS) instructions.html rules.html $(sort $(SAMPLE_DESCRIPTIONS_HTML)) $@
 
 scoreboard/.npm-install:
 	rm -rf $(@D)/node_modules
