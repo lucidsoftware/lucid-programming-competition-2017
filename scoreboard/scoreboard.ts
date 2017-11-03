@@ -95,7 +95,7 @@ let problems = [
     'tron-flowchart',
 ];
 
-const CONTEST_NAME= 'lucid-2017-internal';
+const CONTEST_NAME= 'lucid-2017';
 
 const LIMIT = 100;
 const BASE_URL = `https://www.hackerrank.com/contests/${CONTEST_NAME}/challenges/`;
