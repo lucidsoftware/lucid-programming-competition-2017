@@ -4,8 +4,6 @@ Lucid just moved to a brand new office building on 10355 South Jordan Gateway. O
 
 ```
    ___________________
- 4 |              |  |
-   |              |  |
  3 |              |  |
    |              |  |
  2 |              |  |
@@ -15,19 +13,17 @@ Lucid just moved to a brand new office building on 10355 South Jordan Gateway. O
  0 |            |   || 🚹 🚹 🚹 🚹 🚹 🚹 🚹 🚹
    |            |___||-----------------
 -1 |                 |
-   |                 |
--2 |                 |
    |_________________|
 
 ```
 
 Each person needs to get from the ground floor to the floor where they work. (People working on ground floor don't need the elevator.) Assume the elevator takes 20 seconds to move between adjacent floors, and people don't take any extra time to get on or off.
 
-Given that the elevator is limited on the number of people it can carry, when is the soonest that everyone can be on their desired floor?
+Given that the elevator carries a limited number passengers at a time, when is the soonest that everyone can be on their desired floor?
 
 ## Input
 
-The first line is the capacity of the elevator 0 < C <= 100 and the number of people 0 <= N <= 10,000, separated by a space.
+The first line is two space-separated integers: the elevator's capacity 0 < C <= 100 and the number of people 0 <= N <= 10,000.
 Each of the next N lines is the floor -5000 <= F <= 5000 that person needs to reach. The ground floor is zero.
 
 ## Output
@@ -49,13 +45,12 @@ The time portion of the soonest moment when everyone will be at their desk, give
 1
 -1
 -2</pre></td>
-        <td><pre>4 10
+        <td><pre>4 9
 1
 5
 2
 3
 3
-0
 4
 9
 0

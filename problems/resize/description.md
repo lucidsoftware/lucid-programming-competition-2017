@@ -2,34 +2,31 @@
 
 <img align="right" src="example.png">
 
-A Lucidchart document contains a list of blocks. Each block is stored as a bounding box: the `x` and `y` coordinates of the top-left corner and the block's width and height. A block is resized by clicking on one of the corners and dragging it to another location. Additionally, if the user holds the shift key while resizing a block it will lock the height to width ratio. While resizing with the aspect ratio locked there are a few things that are always true.
+Each Lucidchart shape has a bounding box, modeled as the coordinates of the top-left corner and the block's width and height. A shape may be resized by dragging one corner of the bounding box. When the user resizes and holds the shift key:
 
-1. The corner opposite the one being dragged never moves.
-2. One edge of the block always stays under the cursor.
+* The corner opposite the dragged one does not move.
+* The height-to-width ratio is unchanged. 
+* At least one edge remains under the cursor.
 
-Calculate the final bounding box of a block, given the initial bounding box, the corner being dragged, and where the cursor was when the drag action completed.
+Compute the final bounding box.
 
-Note: We use a coordinate system that increases down and to the right.
+Note: This problem uses a screen coordinate system, where x increases from left to right, and y increases from top to bottom.
 
-# Input
+## Input
 
-The first line is a single integer T, the number of test cases.
-Each test case consists of 3 lines.
-The first line of each test case is the bounding box of the block represented by four integers, `x y w h`, separated by spaces.
-The second line is the corner being dragged, one of `TopLeft`, `TopRight`, `BottomLeft`, or `BottomRight`.
-The third line is the point where the cursor was released represented by two integers, `x y`, separated by a space.
+The first line is a single integer 0 < T <= 1000, the number of test cases.
+Each test case consists of 3 lines:
+1. The bounding box as four space-separated integers, x y w h, where 0 < x, y, w, h <= 1000.
+2. The corner being dragged, one of `TopLeft`, `TopRight`, `BottomLeft`, or `BottomRight`.
+3. The point the cursor's location as two space-separated integers, a, b, where 0 < a, b <= 1000.
 
-#### Constraints
-```
-0 < T <= 100
-0 <= x, y, w, h <= 1000
-```
+The resize never attempts to invert the shape; e.g. when dragging the TopLeft corner, the cursor remains strictly above and to the left of the stationary BottomRight corner.
 
-# Output
+## Output
 
-For each of the T test cases, output a single line with final bounding box of the block as four numbers, `x y w h`, separated by spaces, and rounded down to the nearest integer.
+For each test case, output a line with the resized bounding box as four space-separated numbers, x y w h, each **rounded down** to the nearest integer.
 
-# Example
+## Examples
 
 <table>
     <tr>

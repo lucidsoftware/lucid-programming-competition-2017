@@ -1,4 +1,4 @@
-<svg height="320" viewBox="-10 -10 490 310" width="500" xmlns="http://www.w3.org/2000/svg">
+<svg height="240" viewBox="-10 -10 490 310" width="375" xmlns="http://www.w3.org/2000/svg">
     <path d="M 0 25 25 50 50 25 25 00 Z" fill="none" stroke="black" stroke-width="2"/>
     <text x="25" y="25" alignment-baseline="middle" fill="black" font-size="15" text-anchor="middle">A</text>
     <path d="M 200 25 225 50 250 25 225 0 Z" fill="none" stroke="black" stroke-width="2"/>

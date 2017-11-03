@@ -1,17 +1,20 @@
 # Spatial Indexing
 
-A Lucidchart or Lucidpress document is made up of a list of items on the page. When the user performs an action (a click or drag, for example), we often need to look through this list for nearby items to know how to handle the user input (select a block, connect a line). Unfortunately, for documents with lots of shapes searching through the entire list takes too long.
+A Lucidchart or Lucidpress page has a collection of items. When the user performs an action (a click or drag, for example), we often need to find nearby items to know how to handle the user input (select a block, connect a line).
 
-For this problem we'll simplify each shape to just it's center point.
-We need to find which shape on the page is closest to where the user action occured.
-The next section gives some information on k-d trees, which will be very helpful in constructing a 2-d tree for solving this problem.
+For this problem, we'll simplify each item to just its center point.
+Your task is to quickly find the item closest to where a user action occurs.
 
-## k-d Trees
+Searching through the entire list takes too long if there are lots of items. The next section gives some information on k-d trees, which can be used to create 2-d tree, for efficient spatial searching.
+
+### k-d Tree
 
 A k-dimensional tree is a space-partitioning data structure devised to allow fast querying of points in k-dimensions.
-It is usually implemented as a binary tree, where each layer partitions the points along an axis. The axis of division cycles through the dimensions as you decend the tree. For example, in 3 dimentions: first x, then y, then z, then x, etc. Each node contains a single point, and all points in the left sub-tree are less than or equal to that point with respect to the current axis, and all points in the right sub-tree are greater than or equal to that point with respect to the current axis.
 
-Given a list of points, the following recursive algorithm uses a median-finding sort to construct a balanced k-d tree containing those points.
+The implementation here is a binary tree, where each level partitions the points along an axis, which cycles as you descend the tree. In two dimensions, it would divide first by x, then y, then x, etc. Each node contains a single point, a left sub-tree of points less than or equal to it, and a right sub-tree of points are greater than or equal to it.
+
+The following recursive algorithm taken from [Wikipedia](https://en.wikipedia.org/wiki/K-d_tree) constructs a balanced k-d tree using a median-finding sort.
+
 ```
 function kdtree (list of points pointList, int depth)
 {
@@ -29,31 +32,26 @@ function kdtree (list of points pointList, int depth)
 }
 ```
 
-For this problem, k=2.
+Once the k-d tree is constructed, the algorithm for finding the closest point is roughly:
+
+1. Find the closest point, among the node's point and the subtree containing the search location.
+2. If the search location is farther from \#1 than from the axis, search the other subtree as well.
+3. Return the closest point of \#1 and \#2.
+
+Reminder: Though k-d trees can work for any number of dimensions, for this problem, k=2.
 
 ## Input
 
-The first line is a single integer N, the number of points on the page.
-Each of the next N lines consists of two integers `x y` separated by a space.
-After that is one line with a single integer T, the number of test cases.
-Each of the next T lines contain a single point in the same format as before.
+The first line is an integer 0 < N <= 2\*10^5, the number of points on the page. Each of the next N lines consists of the space-separated integer coordinates between -10^4 and 10^4 inclusive.
 
-#### Constraints
-```
-0 < N <= 200000
-0 < T <= 200000
--10000 <= x <= 10000
--10000 <= y <= 10000
-```
+Next is a line with an integer 0 < T <= 2\*10^5, the number of user actions. Each of the next T lines is an integer point, in the same format as before.
 
 ## Output
 
-For each of the `T` test cases, output a single line in the same format as it was given containing the point on the page that is closest to the test point.
-If two points on the page are the same distance away, choose the one that comes first when sorted (ascending order by x, then y).
+For each of the T actions, output the point on the page that is closest to the action point. Use the same format as the input.
+If two points on the page are the same distance away, break ties by the smallest x, then the smallest y.
 
-<br>
-
-## Example
+## Examples
 
 <table>
     <tr>
@@ -84,7 +82,7 @@ If two points on the page are the same distance away, choose the one that comes 
     </tr>
 </table>
 
-Here are some diagrams of the 2-d tree for the example input.
+Visualizations of the 2-d tree for the example input:
 
 ![](2d_Tree_Plane.svg)
 ![](2d_Tree_Structure.svg)

@@ -1,57 +1,43 @@
 # i18n
 
-Internationalization. What a long word, am I right? I prefer to say i18n (I-Eighteen-N), it is so much easier!
+Internationalization. What a long word, am I right? Because there are eighteen letters between the first and last, it is often abbreviated as i18n (I-eighteen-N), which so much shorter!
 
-At Lucid Software we are expanding our reach by translating our products into many different languages. This is part of the internationalization process of adapting to different cultures. The standard abbreviation for this process is i18n. The abbreviation is obtained by replacing all the inner characters of the word with the number of inner characters.
+Lucid Software recently internationalized its products and translated them into many different languages. Using "i18n" instead of "internationalization" has saved a lot of time in conversations. We want to do this more.
 
-Apply this same abbreviation method to the words we provide.
+Apply this same abbreviation method (replacing the inner characters with the number of inner characters) to the provided words. Do not apply this abbreviation if the word has no inner characters.
 
-### Input
+## Input
 
+The first line is an integer 1 <= W <= 100, the number of words to abbreviate.
+The next W lines are 1 to 30 (inclusive) lowercase ASCII letters.
 
-The first line will contain W, the number of words to abbreviate.
-The next W lines each contain one word.
+## Output
 
-### Output
+Print W lines where each line is the abbreviated form of the word.
 
+## Example
 
-Print W lines where each line contains the abbreviated form of the word.
-
-### Constraints
-
-
-1 <= W <= 100
-
-1 <= len(word) <= 30
-
-a <= char in word <= z
-
-# Example
-
-### Input
-
-```
-5
+<table>
+	<tr>
+		<th>Input</th>
+	</tr>
+	<tr>
+		<td><pre>5
 i
 am
 the
 cool
-coder
-```
-
-### Output
-
-```
-i
+coder</pre>
+		</td>
+	</tr>
+	<tr>
+		<th>Output</th>
+	</tr>
+	<tr>
+		<td><pre>i
 am
 t1e
 c2l
-c3r
-```
-
-### Explanation
-
-
-In the first two words the are no inner characters. The words are already in their abbreviated forms.
-
-In the last three words only the first and last charaters are kept. The inner characters are replaced by the number of inner characters.
+c3r</pre></td>
+	</tr>
+</table>

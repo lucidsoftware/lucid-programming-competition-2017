@@ -1,23 +1,15 @@
 # Problems
-Lucid writes problems every year for the annual programming competition. You have been tasked with selecting which problems should be used this year. It's important that the problems vary in topic and in difficultly.
+Lucid writes problems for the annual programming competition. You have been tasked with selecting which problems are used this year. A well-balanced competition has problems that vary in topic and difficultly.
 
-You've gathered a list of `K` candidate problems. Each problems has one of `N` topics and one of `N` difficulties. How many sets of `N` problems exist such that every topic and difficulty is present?
-
-# Constraints
-```
-1 <= N <= 8
-N <= K <= 10000
-```
-
-The answer is guaranteed to be less than 2^53
+You've gathered a list of K candidate problems. Each problems has one of  N possible topics and one of N possible difficulties. How many sets of N problems exist such that every topic and difficulty is present?
 
 # Input
-The first line will have two integers, N and K. The next K lines each describe a problem, giving its topic and difficulty, separated by a space.
+The first line will have two integers, N and K, where 1 <= N <= 8 and N <= K <= 10^5 The next K lines each describe a problem, giving its topic and difficulty, separated by a space.
 
 Note: Each problem is considered to be distinct, even if another problem has the same topic and difficulty.
 
 # Output
-Output the number of problem sets of size `N` that can be selected where every topic and every difficulty is present.
+Output the number of problem sets of size N that can be selected where every topic and every difficulty is present. The answer is guaranteed to be less than 2^53.
 
 # Examples
 
