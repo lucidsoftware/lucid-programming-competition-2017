@@ -294,6 +294,8 @@ export async function getBaloonQueue(schoolFilter:string = '') {
         'usu': true,
     };
 
+    schoolFilter = schoolFilter.toLowerCase()
+
     if(!(schoolFilter in schools)) {
         schoolFilter = '';
     }
@@ -356,6 +358,8 @@ export async function getBaloonQueue(schoolFilter:string = '') {
     </head>
     <body>
         <div class="container">
+        <h1>LPC Balloon Queue</h1>
+        ${schoolFilter ? '' : '<p>Filter to a location: <a href="?school=byu">BYU</a>, <a href="?school=utah">Utah</a>, or <a href="?school=usu">USU</a>.</p>'}
         <table>
             <tbody>
                 <tr>
@@ -378,6 +382,9 @@ export async function getBaloonQueue(schoolFilter:string = '') {
         <td>${escape(s.score)}</td>
     </tr>`
     })
+    if(result.length == 0) {
+        html += '<tr><td>Waiting for successful submission</td></tr>'
+    }
 
     html += `\n            </tbody>
         </table></div>
@@ -403,7 +410,7 @@ export async function getBaloonQueue(schoolFilter:string = '') {
                 localStorage.setItem(item.dataset['user']+'-location', input.value);
             };
 
-            if(localStorage.getItem(item.id)) {
+            if(localStorage.getItem(item.id) == 'true') {
                 item.classList.add('selected');
             }
             if(localStorage.getItem(item.dataset['user']+'-location')) {
