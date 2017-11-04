@@ -1,5 +1,3 @@
-from collections import namedtuple
-from math import acos, sqrt
 
 class Point():
     def __init__(self, x, y):
