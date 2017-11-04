@@ -10,7 +10,7 @@ one_way = sum(above[i] for i in xrange(0, len(above), capacity)) \
     + sum(below[i] for i in xrange(0, len(below), capacity))
 distance = 2 * one_way - max(next(iter(above), 0), next(iter(below), 0))
 
-hour = 9 + distance / 3 / 60 % 24
+hour = (9 + distance / 3 / 60) % 24
 minute = distance / 3 % 60
 second = distance % 3 * 20
 
