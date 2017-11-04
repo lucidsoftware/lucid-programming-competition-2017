@@ -29,3 +29,5 @@ The leaderboard will be available at  [https://contest.golucid.co/](https://cont
 Input may or may not end with a trailing new line. Extra whitespace is ignored in output. Sometimes a certain numerical accuracy is required of output; in these cases you may print the answer with any number of digits, as long as it is within the requisite range.
 
 Before submitting, it is recommended that you run your code against the samples. HackerRank shows you stdout and stderr when running in this manner.
+
+This contest is sponsored by Lucid Software ([https://golucid.co/](https://golucid.co/)).
