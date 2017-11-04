@@ -4,7 +4,7 @@ Every Friday is pizza day at Lucid Software.
 
 Megan and Jacob are avid pizza consumers and have devised a pizza-eating game.
 
-In the game, Megan and Jacob start with P slices and take turns eating at least N slices but no more than M slices. The first person who fails to eat the requisite pizza on their turn loses. Megan always eats first because, of course, ladies first.
+In the game, Megan and Jacob start with P slices and take turns eating at least M slices but no more than N slices. The first person who fails to eat the requisite pizza on their turn loses. Megan always eats first because, of course, ladies first.
 
 Assuming each player eats optimally, deduce the winner each week.
 
@@ -46,4 +46,4 @@ The first week there are 2 slices to eat but the minimum is 3. Megan goes first 
 
 The second week there are 5 slices. Megan goes first and eats all 5. She wins.
 
-The third week there are 10 slices. Megan goes first and can eat 3 to 6 pizzas, leaving 4 to 7 pizzas. If Jacob eats as much as he can, he leaves Megan 0 to 1 slices, below the minimum 3. Jacob has a winning strategy no matter what Megan does.
+The third week there are 10 slices. Megan goes first and can eat 3 to 6 slices, leaving 4 to 7 slices. If Jacob eats as much as he can, he leaves Megan 0 to 1 slices, below the minimum 3. Jacob has a winning strategy no matter what Megan does.

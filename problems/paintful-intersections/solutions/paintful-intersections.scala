@@ -51,6 +51,6 @@ object Main {
       intersection <- Line(a1, a2) intersect Line(b1, b2)
     } yield intersection
     val vertices = (a.vertices ++ b.vertices ++ intersections).filter(point => a.contains(point) && b.contains(point))
-    printf("%.3f\n", Polygon(vertices).area)
+    printf("%.2f\n", Polygon(vertices).area)
   }
 }

@@ -26,7 +26,7 @@ Fortunately, Filbert knows the general solution for calculating the area of a po
 
 Some additional info:
 
-* Membership of a point ![](https://latex.codecogs.com/svg.latex?%5Cinline%20%28x%2C%20y%29) in the polygon is determined by the terms ![](https://latex.codecogs.com/svg.latex?%5Cinline%20%28x%20-%20x_i%29%28y_%7Bi-1%7D%20-%20y_i%29%20-%20%28y%20-%20y_i%29%28x_%7Bi-1%7D%20-%20x_i%29). If all are positive, it is inside a clockwise polygon. If all are negative, it is inside a counterclockwise polygon. If at least one term is zero, it is on the boundary. (Recall that floating point computations are not exact and and may require some small tolerance.)
+* Membership of a point ![](https://latex.codecogs.com/svg.latex?%5Cinline%20%28x%2C%20y%29) in the polygon is determined by the terms ![](https://latex.codecogs.com/svg.latex?%5Cinline%20%28x%20-%20x_i%29%28y_%7Bi-1%7D%20-%20y_i%29%20-%20%28y%20-%20y_i%29%28x_%7Bi-1%7D%20-%20x_i%29). If all are positive, it is inside a counterclockwise polygon. If all are negative, it is inside a clockwise polygon. If at least one term is zero, it is on the boundary. (Recall that floating point computations are not exact and and may require some small tolerance.)
 * The intersection of two convex polygons is convex.
 * Non-parallel lines ![](https://latex.codecogs.com/svg.latex?%5Cinline%20%28x_1%2C%20y_1%29%2C%20%28x_2%2C%20y_2%29) and ![](https://latex.codecogs.com/svg.latex?%5Cinline%20%28x_3%2C%20y_3%29%2C%20%28x_4%2C%20y_4%29) intersect at
 

@@ -79,4 +79,4 @@ intersection = poly1.get_intersection(poly2)
 if len(intersection.points) == 0:
     intersection = poly2.get_intersection(poly1)
 
-print('{0:.3f}'.format(round(intersection.get_area(), 3)))
+print('{0:.2f}'.format(round(intersection.get_area(), 3)))

@@ -13,4 +13,4 @@ p2 = shapely.geometry.Polygon(v2).convex_hull
 p3 = p1.intersection(p2)
 
 area = p3.area
-print('{0:.3f}'.format(round(area, 3)))
+print('{0:.2f}'.format(round(area, 3)))
