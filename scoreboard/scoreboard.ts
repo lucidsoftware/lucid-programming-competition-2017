@@ -10,7 +10,7 @@ let cookie = new tough.Cookie({
     maxAge: 31536000
 });
 
-const LOCK_SCOREBOARD = process.env['LOCK_SCOREBOARD'];
+const LOCK_SCOREBOARD = true || process.env['LOCK_SCOREBOARD'];
 
 function bucket(data, key) {
     let result = {};
@@ -186,6 +186,10 @@ export async function leaderboard(schoolFilter?:string) {
         position: relative;
     }
 
+    .need-names {
+        color: #ED6058;
+    }
+
     .tooltip .tooltiptext {
         visibility: hidden;
         width: 300px;
@@ -229,9 +233,9 @@ export async function leaderboard(schoolFilter?:string) {
 
         let names = bio.map(n => escape(n)).join('<br>');
 
-        let nameTooltip = bio.length > 0 ? 'Competitors:<br>' + names : 'Update the "About" field to have the school you are competing at as the first line (BYU, Utah, or USU), followed by the name of each person on your team on the next lines.';
+        let nameTooltip = bio.length > 0 ? 'Competitors:<br>' + names : 'Update the "About" field to have the school you are competing at as the first line (BYU, Utah, or USU), followed by the name of each person on your team on the next lines.<br><b>You must do this to be eligible for prizes</b>';
 
-        let row = `\n<tr><td>${i+1}</td><td><a class="tooltip" href="https://www.hackerrank.com/${score.userName}">${escape(profiles[score.userName].model.name)} <span class="tooltiptext">${nameTooltip}</span></a></td>`;
+        let row = `\n<tr><td>${i+1}</td><td><a class="tooltip${bio.length == 0 ? ' need-names' : ''}" href="https://www.hackerrank.com/${score.userName}">${escape(profiles[score.userName].model.name)}${bio.length == 0 ? '*' : ''} <span class="tooltiptext">${nameTooltip}</span></a></td>`;
         if(schoolFilter && schoolFilter != school) {
             continue;
         }
@@ -242,7 +246,7 @@ export async function leaderboard(schoolFilter?:string) {
                 row += `<td>${abbreviations[school]}</td>`;
             }
         } else {
-            row += `<td><a class="tooltip" href="https://www.hackerrank.com/settings/bio">Set Location<span class="tooltiptext">Update the "About" field to have the school you are competing at as the first line (BYU, Utah, or USU), followed by the name of each person on your team on the next lines.</span></td>`;
+            row += `<td><a class="tooltip" href="https://www.hackerrank.com/settings/bio">Set Location<span class="tooltiptext">Update the "About" field to have the school you are competing at as the first line (BYU, Utah, or USU), followed by the name of each person on your team on the next lines.<br><b>You must do this to be eligible for prizes</b></span></td>`;
         }
         problems.forEach(p => {
             row += '<td>';
