@@ -23,6 +23,13 @@ function bucket(data, key) {
     return result;
 }
 
+const whitelist = {
+    1303944631: true,
+    1303945100: true,
+    1303945147: true,
+    1303945177: true,
+};
+
 function calculateScore(submissions) {
     let score = 0;
     let time = 0;
@@ -49,7 +56,7 @@ function calculateScore(submissions) {
         if(problemStatus[slug].complete) {
             return;
         }
-        if(submission.status == 'Accepted') {
+        if(submission.status == 'Accepted' || whitelist[submission.id]) {
             problemStatus[slug].complete = true;
             score++;
             problemStatus[slug].time = submission.time_from_start;
